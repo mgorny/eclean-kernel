@@ -123,7 +123,14 @@ class KernelImage(GenericFile):
                     # Technically a redundant import, this is just
                     # to make your IDE happy :)
                     import zstandard
-                    return zstandard.ZstdDecompressor().decompress(f.read())
+                    reader = zstandard.ZstdDecompressor().stream_reader(f)
+                    decomp = b''
+                    while True:
+                        chunk = reader.read(1024*1024)
+                        decomp += chunk
+                        if not chunk:
+                            break
+                        return decomp
                 else:
                     return getattr(mod, 'decompress')(f.read())
         return f.read()
