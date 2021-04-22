@@ -10,10 +10,16 @@ files including auxiliary files in /boot, kernel modules and even the source
 tree.
 
 
-Usage
------
+Steps to use :
+----------------
 
-The typical use is::
+git clone https://github.com/mgorny/eclean-kernel.git
+
+cd eclean-kernel (Change dir to eclean-kernel)
+
+pip install .  (To install 'setup.py' file)
+
+Commands usage in eclean-kernel::
 
 	eclean-kernel -n 3 -p
 
